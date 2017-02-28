@@ -38,3 +38,7 @@ D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\Newtonsoft.Json.xml
 D:\projeler\mvc\WorldWordBox\WorldWordBox\obj\Debug\WorldWordBox.csprojResolveAssemblyReference.cache
 D:\projeler\mvc\WorldWordBox\WorldWordBox\obj\Debug\WorldWordBox.dll
 D:\projeler\mvc\WorldWordBox\WorldWordBox\obj\Debug\WorldWordBox.pdb
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.dll
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.SqlServer.dll
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.xml
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.SqlServer.xml
