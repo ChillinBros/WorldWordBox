@@ -4,14 +4,13 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="wwbModel.Users">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="mail" ColumnName="mail" />
-          <ScalarProperty Name="first_name" ColumnName="first_name" />
-          <ScalarProperty Name="last_name" ColumnName="last_name" />
-          <ScalarProperty Name="create_date" ColumnName="create_date" />
-          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

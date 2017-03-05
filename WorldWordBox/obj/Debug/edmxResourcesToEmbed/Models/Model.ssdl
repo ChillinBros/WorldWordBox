@@ -5,9 +5,8 @@
       <PropertyRef Name="user_id" />
     </Key>
     <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="mail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="first_name" Type="nvarchar" MaxLength="50" />
     <Property Name="last_name" Type="nvarchar" MaxLength="50" />
     <Property Name="create_date" Type="datetime" Nullable="false" />

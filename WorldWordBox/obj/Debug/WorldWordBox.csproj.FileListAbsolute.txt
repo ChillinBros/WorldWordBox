@@ -42,3 +42,7 @@ D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.dll
 D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.SqlServer.dll
 D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.xml
 D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\EntityFramework.SqlServer.xml
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\CryptoHelper.dll
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\CryptoHelper.xml
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+D:\projeler\mvc\WorldWordBox\WorldWordBox\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml

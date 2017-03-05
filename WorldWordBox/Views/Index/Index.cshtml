@@ -1,16 +1,22 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-   // Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using WorldWordBox.Models
+ @{
+     ViewBag.Title = "Index";
+     // Layout = "~/Views/Shared/_Layout.cshtml";
+
+
 }
 
 
 
 
-
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
 
 <h2>Index</h2>
-hahahahah
+<button type="button" id="login">Giriş</button>
+<button type="button" id="register">Kaydol</button>
 
 
 @Scripts.Render("~/bundles/jquery")
@@ -19,14 +25,53 @@ hahahahah
 
 <script>
     $(function () {
-        var userName = "husrev";
-        var password = "123";
-        var mail = "husrev.beyazisik@gmail.com";
+        //LOGIN
+        $("#login").click(function () {
+            var mail = "onat@gmail.com";
+            var password = "1233";
 
-        var data = {"userName":userName,"password":password,"mail":mail};
-        $.post("/Index/Register", data, function () {
-            alert("kaydoldu");
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+
+            $.post("/Index/Login", data, function (result) {
+                if (result == 0)
+                {
+                    alert("tamam");
+                } else if (result == 1) {
+                    alert("kullanıcı yok");
+                } else if (result == 2) {
+                    alert("şifre yanlış");
+                } else if (result == 3) {
+                    alert("bilinmeyen hata");
+                }
+            });
         });
+
+        //REGISTER
+        $("#register").click(function () {
+            var mail = "onat@gmail.com";
+            var password = "1233";
+
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            var data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+            $.post("/Index/Register", data, function (result) {
+
+                if (result == 0) {
+                    alert("tamam");
+                } else if (result == 1) {
+                    alert("fail");
+                } else if (result == 2) {
+                    alert("mail var");
+                }
+
+            });
+        });
+
+    
         
 
     });
