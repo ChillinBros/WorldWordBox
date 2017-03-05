@@ -5,7 +5,8 @@ using System.Web;
 
 namespace WorldWordBox.Models
 {
-    public class Register
+    public abstract class Sys
     {
+        public static string LoginToken = "lgntkn";
     }
 }

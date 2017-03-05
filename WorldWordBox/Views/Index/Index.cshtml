@@ -27,8 +27,8 @@
     $(function () {
         //LOGIN
         $("#login").click(function () {
-            var mail = "onat@gmail.com";
-            var password = "1233";
+            var mail = "hs@gmail.com";
+            var password = "123";
 
             var form = $('#__AjaxAntiForgeryForm');
             var token = $('input[name="__RequestVerificationToken"]', form).val();
@@ -38,7 +38,7 @@
             $.post("/Index/Login", data, function (result) {
                 if (result == 0)
                 {
-                    alert("tamam");
+                    window.location.replace("@Url.Action("Index", "Member")");
                 } else if (result == 1) {
                     alert("kullanıcı yok");
                 } else if (result == 2) {
@@ -51,8 +51,8 @@
 
         //REGISTER
         $("#register").click(function () {
-            var mail = "onat@gmail.com";
-            var password = "1233";
+            var mail = "hs@gmail.com";
+            var password = "123";
 
             var form = $('#__AjaxAntiForgeryForm');
             var token = $('input[name="__RequestVerificationToken"]', form).val();
@@ -60,19 +60,22 @@
             var data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
             $.post("/Index/Register", data, function (result) {
 
-                if (result == 0) {
+                if (result == 0)
+                {
                     alert("tamam");
-                } else if (result == 1) {
-                    alert("fail");
-                } else if (result == 2) {
+                } else if (result == 1)
+                {
+                    alert("fail"); 
+                } else if (result == 2)
+                {
                     alert("mail var");
                 }
 
             });
         });
 
-    
-        
+
+
 
     });
 

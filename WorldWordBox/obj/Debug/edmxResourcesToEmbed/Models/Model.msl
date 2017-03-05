@@ -14,5 +14,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LoginTokens">
+      <EntityTypeMapping TypeName="wwbModel.LoginTokens">
+        <MappingFragment StoreEntitySet="LoginTokens">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="token" ColumnName="token" />
+          <ScalarProperty Name="token_id" ColumnName="token_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -26,5 +26,6 @@ namespace WorldWordBox.Models
         }
     
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<LoginTokens> LoginTokens { get; set; }
     }
 }

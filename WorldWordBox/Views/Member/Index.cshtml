@@ -1,0 +1,22 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        meyaba @ViewData["mail"] abi
+        @using (Html.BeginForm("Logout", "Member", FormMethod.Post))
+        {
+            <button type="submit" id="logout">Çık</button>
+        }
+    </div>
+</body>
+</html>
