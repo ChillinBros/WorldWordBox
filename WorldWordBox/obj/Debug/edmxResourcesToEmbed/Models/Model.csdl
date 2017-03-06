@@ -2,7 +2,6 @@
 <Schema Namespace="wwbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="wwbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="wwbModel.Users" />
-    <EntitySet Name="LoginTokens" EntityType="wwbModel.LoginTokens" />
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -15,13 +14,6 @@
     <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="birth_date" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="LoginTokens">
-    <Key>
-      <PropertyRef Name="token_id" />
-    </Key>
-    <Property Name="token_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="token" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="user_id" Type="Int32" />
+    <Property Name="login_token" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

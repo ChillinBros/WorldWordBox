@@ -67,28 +67,12 @@ namespace WorldWordBox.Controllers
                 else
                 {
                     //creating token
-                    LoginTokens token = new LoginTokens();
-                    token.token = Crypto.HashPassword(userControl.mail + userControl.password + userControl.create_date);
-                    token.user_id = userControl.user_id;
+                    userControl.login_token = Crypto.HashPassword(userControl.mail + userControl.password + userControl.create_date);
 
-                    //check if token already added
-                    LoginTokens tokenControl = new LoginTokens();
-                    tokenControl = entities.LoginTokens
-                                            .Where(lt => lt.user_id == userControl.user_id)
-                                            .FirstOrDefault();
-
-                        if(tokenControl!=null)
-                        {
-                            tokenControl.token = token.token;
-                            entities.SaveChanges();
-                        }else
-                        {
-                            entities.LoginTokens.Add(token);
-                            entities.SaveChanges();
-                        }
-
+                    entities.SaveChanges();
+      
                         
-                    Response.Cookies[Sys.LoginToken].Value = token.token;
+                    Response.Cookies[Sys.LoginToken].Value = userControl.login_token;
                     return Json(LoginStatus.Success, JsonRequestBehavior.DenyGet);
                 }
                     

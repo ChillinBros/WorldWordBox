@@ -10,7 +10,6 @@ namespace WorldWordBox.Controllers
     {
         wwbEntities entities;
         Users user;
-        LoginTokens token;
         string tokenCookie;
 
         public bool isLogged()
@@ -30,19 +29,20 @@ namespace WorldWordBox.Controllers
 
             using (entities = new wwbEntities())
             {
-                //check token
-                token = new LoginTokens();
+                //get token
                 tokenCookie = Request.Cookies[Sys.LoginToken].Value.ToString();
-                token = entities.LoginTokens.Where(t => t.token == tokenCookie)
+
+                //get user
+                user = entities.Users.Where(u => u.login_token == tokenCookie)
                                             .FirstOrDefault();
 
-                if(token == null) return RedirectToAction("Index", "Index");
-
                 //check user
-                user = entities.Users.Where(u => u.user_id == token.user_id)
-                                     .FirstOrDefault();
+                if (user == null) return RedirectToAction("Index", "Index");
 
-                if(user == null) return RedirectToAction("Index", "Index");
+                //check token
+                if (user.login_token == null) return RedirectToAction("Index", "Index");
+
+      
 
             }
 

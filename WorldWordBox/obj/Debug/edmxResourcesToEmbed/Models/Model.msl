@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="wwbModel.Users">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="login_token" ColumnName="login_token" />
           <ScalarProperty Name="birth_date" ColumnName="birth_date" />
           <ScalarProperty Name="create_date" ColumnName="create_date" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />
@@ -11,15 +12,6 @@
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="mail" ColumnName="mail" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="LoginTokens">
-      <EntityTypeMapping TypeName="wwbModel.LoginTokens">
-        <MappingFragment StoreEntitySet="LoginTokens">
-          <ScalarProperty Name="user_id" ColumnName="user_id" />
-          <ScalarProperty Name="token" ColumnName="token" />
-          <ScalarProperty Name="token_id" ColumnName="token_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
