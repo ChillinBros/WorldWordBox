@@ -58,7 +58,7 @@
                                 <label class="login-field-icon fui-lock" for="password"></label>
                             </div>
 
-                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#">Log in </button>
+                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#"><span id="loginText">Log in</span> <i id="loading" class=""></i></button>
                             <label class="checkbox" for="checkbox1">
                                 <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                                 Remember me
@@ -115,7 +115,7 @@
                         </label>
 
                         <a class="btn btn-info btn-lg btn-block" href="#">Register</a>
-
+                       
                     </div>
                 </div>
                 <div class="col-md-3"></div>
@@ -131,9 +131,6 @@
 
 
 
-    <h2>Index</h2>
-   
-    <button type="button" id="register">Kaydol</button>
 
 
     @Scripts.Render("~/bundles/jquery")
@@ -144,6 +141,10 @@
         $(function () {
             //LOGIN
             $("#login").click(function () {
+                $("#login").addClass("disabled")
+                $("#loading").addClass("fa fa-refresh fa-spin fa-3x fa-fw");
+                $("#loginText").text("");
+
                 var mail = $("#mail").val();
                 var password = $("#password").val();
 
@@ -162,6 +163,11 @@
                     } else if (result == 3) {
                         alert("bilinmeyen hata");
                     }
+
+
+                    $("#login").removeClass("disabled").text("Login");
+                    $("#loginText").text("Logşn");
+                    $("#loading").removeClass("fa fa-refresh fa-spin fa-3x fa-fw");
                 });
             });
 
