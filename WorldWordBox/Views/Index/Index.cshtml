@@ -1,82 +1,195 @@
-﻿@using WorldWordBox.Models
- @{
-     ViewBag.Title = "Index";
-     // Layout = "~/Views/Shared/_Layout.cshtml";
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="~/Content/flat-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/stil.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-social.css" rel="stylesheet" />
+
+</head>
+    @using WorldWordBox.Models
+    @{
+        ViewBag.Title = "Index";
+      
 
 
-}
+    }
 
 
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
-{
-    @Html.AntiForgeryToken()
-}
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
 
-<h2>Index</h2>
-<button type="button" id="login">Giriş</button>
-<button type="button" id="register">Kaydol</button>
+<body class="c1">
 
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+    <!-- FullScreen -->
+    <div class="intro-header">
+        <div class="col-xs-12 text-center abcen1">
+            <br>
+            <img src="images/WWB.png" class="img-responsive center-block" width="175" height="auto" />
+            <br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
 
 
-<script>
-    $(function () {
-        //LOGIN
-        $("#login").click(function () {
-            var mail = "onat@gmail.com";
-            var password = "1233";
+                    <form action="/action_page.php">
+                        <div class="login-form">
+                            <h4>Login</h4>
+                            <div class="form-group">
+                                <!-- has-error -->
+                                <input type="text" class="form-control login-field" value="" placeholder="Enter your email" id="mail" required="required" />
+                                <label class="login-field-icon fui-mail" for="mail"></label>
+                            </div>
 
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
+                            <div class="form-group">
+                                <input type="password" class="form-control login-field" value="" placeholder="Password" id="password" />
+                                <label class="login-field-icon fui-lock" for="password"></label>
+                            </div>
 
-            data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#">Log in </button>
+                            <label class="checkbox" for="checkbox1">
+                                <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                                Remember me
+                            </label>
 
-            $.post("/Index/Login", data, function (result) {
-                if (result == 0)
-                {
-                    window.location.replace("@Url.Action("Index", "Member")");
-                } else if (result == 1) {
-                    alert("kullanıcı yok");
-                } else if (result == 2) {
-                    alert("şifre yanlış");
-                } else if (result == 3) {
-                    alert("bilinmeyen hata");
-                }
+                            <a class="btn btn-block btn-social btn-facebook">
+                                <span class="fa fa-facebook"></span>
+                                Log in with facebook
+                            </a>
+
+                            <a class="btn btn-block btn-social btn-google">
+                                <span class="fa fa-google"></span>
+                                Log in with google
+                            </a>
+                            <a class="login-link" href="#">Lost your password?</a>
+
+                        </div>
+                    </form>
+
+
+                </div>
+                <div class="col-md-3">
+
+                    <div class="login-form">
+                        <h4>Register</h4>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
+                            <label class="login-field-icon fui-user" for="login-name"></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control login-field" value="" placeholder="Enter your surname" id="login-name" />
+                            <label class="login-field-icon fui-user" for="login-name"></label>
+                        </div>
+                        <div class="form-group">
+                            <!-- has-error -->
+                            <input type="text" class="form-control login-field" value="" placeholder="Enter your email" id="login-name" />
+                            <label class="login-field-icon fui-mail" for="login-name"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control login-field" value="" placeholder="Re-password" id="login-pass" />
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+
+                        <label class="checkbox" for="checkbox2">
+                            <input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                            Terms and conditions
+                        </label>
+
+                        <a class="btn btn-info btn-lg btn-block" href="#">Register</a>
+
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+
+
+    <h2>Index</h2>
+   
+    <button type="button" id="register">Kaydol</button>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script>
+        $(function () {
+            //LOGIN
+            $("#login").click(function () {
+                var mail = $("#mail").val();
+                var password = $("#password").val();
+
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+
+                $.post("/Index/Login", data, function (result) {
+                    if (result == 0) {
+                        window.location.replace("@Url.Action("Index", "Member")");
+                    } else if (result == 1) {
+                        alert("kullanıcı yok");
+                    } else if (result == 2) {
+                        alert("şifre yanlış");
+                    } else if (result == 3) {
+                        alert("bilinmeyen hata");
+                    }
+                });
             });
+
+            //REGISTER
+            $("#register").click(function () {
+                var mail = "hs@gmail.com";
+                var password = "123";
+
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                var data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+                $.post("/Index/Register", data, function (result) {
+
+                    if (result == 0) {
+                        alert("tamam");
+                    } else if (result == 1) {
+                        alert("fail");
+                    } else if (result == 2) {
+                        alert("mail var");
+                    }
+
+                });
+            });
+
+
+
+
         });
 
-        //REGISTER
-        $("#register").click(function () {
-            var mail = "hs@gmail.com";
-            var password = "123";
-
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
-
-            var data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
-            $.post("/Index/Register", data, function (result) {
-
-                if (result == 0)
-                {
-                    alert("tamam");
-                } else if (result == 1)
-                {
-                    alert("fail"); 
-                } else if (result == 2)
-                {
-                    alert("mail var");
-                }
-
-            });
-        });
-
-
-
-
-    });
-
-</script>
+    </script>

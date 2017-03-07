@@ -52,7 +52,7 @@ namespace WorldWordBox.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public JsonResult Login(string mail,string password)
-        {
+        z{
             try
             {
                 Users userControl = entities.Users
