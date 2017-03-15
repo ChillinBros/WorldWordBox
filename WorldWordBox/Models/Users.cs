@@ -21,6 +21,5 @@ namespace WorldWordBox.Models
         public string last_name { get; set; }
         public System.DateTime create_date { get; set; }
         public Nullable<System.DateTime> birth_date { get; set; }
-        public string login_token { get; set; }
     }
 }

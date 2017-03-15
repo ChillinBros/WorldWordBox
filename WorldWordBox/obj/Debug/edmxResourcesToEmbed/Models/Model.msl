@@ -4,7 +4,6 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="wwbModel.Users">
         <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="login_token" ColumnName="login_token" />
           <ScalarProperty Name="birth_date" ColumnName="birth_date" />
           <ScalarProperty Name="create_date" ColumnName="create_date" />
           <ScalarProperty Name="last_name" ColumnName="last_name" />

@@ -32,7 +32,7 @@ namespace WorldWordBox.Controllers
 
         public bool isLogged()
         {
-            if (Request.Cookies[Sys.LoginToken] != null)
+            if (Session[Sys.userId] != null)
                 return true;
 
             return false;
@@ -51,8 +51,8 @@ namespace WorldWordBox.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult Login(string mail,string password)
-        z{
+        public JsonResult Login(string mail,string password,bool rememberMe)
+        {
             try
             {
                 Users userControl = entities.Users
@@ -67,12 +67,15 @@ namespace WorldWordBox.Controllers
                 else
                 {
                     //creating token
-                    userControl.login_token = Crypto.HashPassword(userControl.mail + userControl.password + userControl.create_date);
+                    Session[Sys.userId] = userControl.user_id;
+                    Session[Sys.mail] = userControl.mail;
+                    Session[Sys.firstName] = userControl.first_name;
+                    Session[Sys.lastName] = userControl.last_name;
+                    Session[Sys.birthDate] = userControl.birth_date;
+                    Session[Sys.createDate] = userControl.create_date;
 
-                    entities.SaveChanges();
-      
-                        
-                    Response.Cookies[Sys.LoginToken].Value = userControl.login_token;
+                    Session.Timeout = rememberMe ? 250000 : 720;
+
                     return Json(LoginStatus.Success, JsonRequestBehavior.DenyGet);
                 }
                     

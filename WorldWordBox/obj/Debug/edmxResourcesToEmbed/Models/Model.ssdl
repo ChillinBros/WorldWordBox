@@ -11,7 +11,6 @@
     <Property Name="last_name" Type="nvarchar" MaxLength="50" />
     <Property Name="create_date" Type="datetime" Nullable="false" />
     <Property Name="birth_date" Type="datetime" />
-    <Property Name="login_token" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityContainer Name="wwbModelStoreContainer">
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />

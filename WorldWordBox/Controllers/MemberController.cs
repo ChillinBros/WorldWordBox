@@ -14,7 +14,7 @@ namespace WorldWordBox.Controllers
 
         public bool isLogged()
         {
-            if (Request.Cookies[Sys.LoginToken] != null)
+            if (Session[Sys.userId] != null)
                 return true;
 
             return false;
@@ -27,26 +27,7 @@ namespace WorldWordBox.Controllers
                 return RedirectToAction("Index", "Index");
 
 
-            using (entities = new wwbEntities())
-            {
-                //get token
-                tokenCookie = Request.Cookies[Sys.LoginToken].Value.ToString();
-
-                //get user
-                user = entities.Users.Where(u => u.login_token == tokenCookie)
-                                            .FirstOrDefault();
-
-                //check user
-                if (user == null) return RedirectToAction("Index", "Index");
-
-                //check token
-                if (user.login_token == null) return RedirectToAction("Index", "Index");
-
-      
-
-            }
-
-            ViewData["mail"] = user.mail;
+            ViewData["mail"] = Session["mail"];
 
 
             return View();
@@ -56,11 +37,9 @@ namespace WorldWordBox.Controllers
         public ActionResult Logout()
         {
 
-            if (Request.Cookies[Sys.LoginToken] != null)
+            if (isLogged())
             {
-                var c = new HttpCookie(Sys.LoginToken);
-                c.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Add(c);
+                Session[Sys.userId] = null;
             }
 
             return RedirectToAction("Index", "Index");

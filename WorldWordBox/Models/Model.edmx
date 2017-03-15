@@ -16,7 +16,6 @@
           <Property Name="last_name" Type="nvarchar" MaxLength="50" />
           <Property Name="create_date" Type="datetime" Nullable="false" />
           <Property Name="birth_date" Type="datetime" />
-          <Property Name="login_token" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityContainer Name="wwbModelStoreContainer">
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -39,7 +38,6 @@
           <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="birth_date" Type="DateTime" Precision="3" />
-          <Property Name="login_token" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -50,7 +48,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="wwbModel.Users">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="login_token" ColumnName="login_token" />
                 <ScalarProperty Name="birth_date" ColumnName="birth_date" />
                 <ScalarProperty Name="create_date" ColumnName="create_date" />
                 <ScalarProperty Name="last_name" ColumnName="last_name" />

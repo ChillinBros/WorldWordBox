@@ -59,8 +59,8 @@
                             </div>
 
                             <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#"><span id="loginText">Log in</span> <i id="loading" class=""></i></button>
-                            <label class="checkbox" for="checkbox1">
-                                <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                            <label class="checkbox" for="rememberMe">
+                                <input type="checkbox" value="" id="rememberMe" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
                                 Remember me
                             </label>
 
@@ -151,7 +151,13 @@
                 var form = $('#__AjaxAntiForgeryForm');
                 var token = $('input[name="__RequestVerificationToken"]', form).val();
 
-                data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+                //remember
+                if ($("#rememberMe").is(':checked'))
+                    var remember = true;
+                else
+                    var remember = false;
+
+                data = { "mail": mail, "password": password,"rememberMe":remember, "__RequestVerificationToken": token };
 
                 $.post("/Index/Login", data, function (result) {
                     if (result == 0) {

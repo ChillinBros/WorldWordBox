@@ -14,6 +14,5 @@
     <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="birth_date" Type="DateTime" Precision="3" />
-    <Property Name="login_token" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
