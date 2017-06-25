@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.Mvc;
 using WorldWordBox.Models;
 using System.Linq;
+using System.Net;
+using System.IO;
 
 namespace WorldWordBox.Controllers
 {
@@ -43,6 +45,33 @@ namespace WorldWordBox.Controllers
             }
 
             return RedirectToAction("Index", "Index");
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Translate(string word, string language)
+        {
+            if (word.Equals(""))
+                return Json("", JsonRequestBehavior.AllowGet);
+
+            var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + Sys.yandexTranslateApiKey + "&text=" + word + "&lang=" + language + "&format=html";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+            Stream stream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(stream);
+
+            String line="",responseJson  = "";
+
+            while ((line = reader.ReadLine()) != null)
+                responseJson += line;
+
+      
+
+            return Json(responseJson, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -9,14 +9,91 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+
+
+    <!-- CSS -->
+    <link href="~/Content/flat-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/stil.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-social.css" rel="stylesheet" />
+
 </head>
+
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
 <body>
-    <div> 
+    <div>
         meyaba @ViewData["mail"] abi
-        @using (Html.BeginForm("Logout", "Member", FormMethod.Post))
-        {
-            <button type="submit" id="logout">Çık</button>
-        }
-    </div>
+
+        <form action="#">
+
+                <div class="form-group">
+                    <!-- has-error -->
+                    <input type="text" class="form-control" value="" placeholder="çevrilcek yazı" id="word" />
+                </div>
+
+            <p id="translatedWord"></p>
+        </form>
+
+
+
+
+                @using (Html.BeginForm("Logout", "Member", FormMethod.Post))
+                {
+                    <button type="submit" id="logout">Çık</button>
+                }
+            </div>
 </body>
 </html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+<script>
+    $(function () {
+        $("#word").keyup(function () {
+            
+            var tryCount = 0;
+
+            //zamanlama async fonksiyon karışıklığı için 3 saniye boyunca en son yazılanı çevriliyor
+            var timerId = setInterval(function () {
+
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                var data = { "word": $("#word").val(), "language": "tr-en", "format": "html", "__RequestVerificationToken": token };
+
+                $.post("/Member/Translate", data, function (result) {
+
+                    var jsonData = jQuery.parseJSON(result);
+
+                    $("#translatedWord").text(jsonData.text);
+
+                });
+
+
+                if (tryCount >= 3)
+                    clearInterval(timerId);
+
+            }, 1000);
+          
+
+
+            /* api key not secret */
+            //var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170625T120448Z.da67eaaf57c1c552.5d7f2ad51c9331741b824c8d21e051c8b7090255";
+
+            //var data = { "text": $("#word").val(), "lang": "tr-en", "format": "html" };
+
+            //$.post(url, data, function (result) {
+            //    $("#translatedWord").text(result.text);
+            //});
+        });
+    });
+
+</script>
