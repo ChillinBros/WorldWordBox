@@ -28,9 +28,18 @@ namespace WorldWordBox.Controllers
             if(!isLogged())
                 return RedirectToAction("Index", "Index");
 
-
             ViewData["mail"] = Session["mail"];
 
+
+            return View();
+        }
+
+        public ActionResult AddWord()
+        {
+            if (!isLogged())
+                return RedirectToAction("Index", "Index");
+
+            ViewData["mail"] = Session["mail"];
 
             return View();
         }

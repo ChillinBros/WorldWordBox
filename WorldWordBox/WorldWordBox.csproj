@@ -149,6 +149,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DenemeController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Global.asax.cs">
@@ -180,6 +181,38 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flat-ui.min.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\1.jpg" />
+    <Content Include="Content\images\Achievement\10000_kelime_ekleme.png" />
+    <Content Include="Content\images\Achievement\1000_hatasiz_kelime.png" />
+    <Content Include="Content\images\Achievement\1000_kelime_ekleme.png" />
+    <Content Include="Content\images\Achievement\1000_kelime_ezberi.png" />
+    <Content Include="Content\images\Achievement\100_hatasiz_kelime.png" />
+    <Content Include="Content\images\Achievement\100_kelime_ekleme.png" />
+    <Content Include="Content\images\Achievement\100_kelime_ezberi.png" />
+    <Content Include="Content\images\Achievement\10_hatasız_kelime.png" />
+    <Content Include="Content\images\Achievement\10_kelime_ezberi.png" />
+    <Content Include="Content\images\Achievement\5000_kelime_ekleme.png" />
+    <Content Include="Content\images\Achievement\500_hatasiz_kelime.png" />
+    <Content Include="Content\images\Achievement\500_kelime_ekleme.png" />
+    <Content Include="Content\images\Achievement\500_kelime_ezberi.png" />
+    <Content Include="Content\images\Achievement\50_hatasiz_kelime.png" />
+    <Content Include="Content\images\Achievement\50_kelime_ezberi.png" />
+    <Content Include="Content\images\Achievement\ilk_hata.png" />
+    <Content Include="Content\images\Achievement\ilk_kelime_ezber.png" />
+    <Content Include="Content\images\Achievement\İlk_Gecerli_Test.png" />
+    <Content Include="Content\images\Achievement\İlk_Kelime_Ekleme.png" />
+    <Content Include="Content\images\Achievement\İlk_test_olusturma.png" />
+    <Content Include="Content\images\b3.jpg" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\default_profile.jpg" />
+    <Content Include="Content\images\delete-button.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\next_left.png" />
+    <Content Include="Content\images\next_right.png" />
+    <Content Include="Content\images\repeat.png" />
+    <Content Include="Content\images\shuffle.png" />
+    <Content Include="Content\images\water_blue_mountains_scenery_clouds_63843_1920x1200.jpg" />
+    <Content Include="Content\images\WWB.png" />
     <Content Include="Content\stil.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -194,6 +227,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\application.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\Model.edmx">
@@ -209,10 +243,38 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="less\mixins\background-clip.less" />
+    <Content Include="less\mixins\background-variant.less" />
+    <Content Include="less\mixins\border-radius.less" />
+    <Content Include="less\mixins\buttons.less" />
+    <Content Include="less\mixins\center-block.less" />
+    <Content Include="less\mixins\clearfix.less" />
+    <Content Include="less\mixins\forms.less" />
+    <Content Include="less\mixins\gradients.less" />
+    <Content Include="less\mixins\grid.less" />
+    <Content Include="less\mixins\hide-text.less" />
+    <Content Include="less\mixins\image.less" />
+    <Content Include="less\mixins\nav-divider.less" />
+    <Content Include="less\mixins\navbar-vertical-align.less" />
+    <Content Include="less\mixins\opacity.less" />
+    <Content Include="less\mixins\pagination.less" />
+    <Content Include="less\mixins\pallets.less" />
+    <Content Include="less\mixins\reset-filter.less" />
+    <Content Include="less\mixins\resize.less" />
+    <Content Include="less\mixins\responsive-visibility.less" />
+    <Content Include="less\mixins\select.less" />
+    <Content Include="less\mixins\size.less" />
+    <Content Include="less\mixins\switches.less" />
+    <Content Include="less\mixins\tab-focus.less" />
+    <Content Include="less\mixins\text-emphasis.less" />
+    <Content Include="less\mixins\text-overflow.less" />
+    <Content Include="less\mixins\vendor-prefixes.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\flat-ui.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -230,6 +292,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Shared\member_Layout.cshtml" />
+    <Content Include="Views\Deneme\Index.cshtml" />
+    <Content Include="Views\Member\AddWord.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>
@@ -239,10 +304,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
     <Folder Include="fonts\glyphicons\" />
     <Folder Include="fonts\lato\" />
-    <Folder Include="less\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

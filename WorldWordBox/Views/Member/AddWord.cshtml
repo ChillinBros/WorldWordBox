@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "AddWord";
+    Layout = "~/Views/Shared/member_Layout.cshtml";
+}
+
+
+
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+
+        meyaba @ViewData["mail"] abi
+
+
+<h1>Kelime Ekle</h1>
+<br>
+
+<div class="row">
+    
+    <form action="#">
+
+        <div class="col-md-2">
+            <input type="text" class="form-control login-field" value="" id="word" placeholder="Kelimeyi Gir" required />
+        </div>
+        <div class="col-md-1"><img src="~/Content/images/shuffle.png" width="40" height="auto"></div>
+        <div class="col-md-2">
+            <input type="text" id="translatedWord" class="form-control login-field" value="" placeholder="" required />
+        </div>
+        <div class="col-md-4">
+            <select class="form-control select select-primary" data-toggle="select">
+                <option value="0">Grup Seç</option>
+                <option value="1">Ofis Eşyaları</option>
+                <option value="2">Hayvanlar</option>
+                <option value="3">Meyveler</option>
+                <option value="4">Karışık</option>
+                <option value="5">Yeni öğrendiklerim</option>
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <a class="btn btn-block btn-primary btn-lg" id="addWord">Ekle</a>
+        </div>
+    </form>
+
+</div>
+<br>
+<div class="alert alert-success">
+    <p class=" fui-alert-circle">  Tebrikler Kelime Eklendi.</p>
+</div>
+<div class="alert alert-danger">
+    <p class=" fui-alert-circle">  Üzgünüm Kelime Eklenirken bir hata oluştu.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(function () {
+
+        var count = 0;
+        $("#word").keyup(function () {
+
+            //daha önceden tuş basılıp bitmediyse temizliyoruz
+            clearInterval(timerId);
+
+
+            var timerId = setInterval(function () {
+                count++;
+
+                if (count == 2)
+                {
+                    var form = $('#__AjaxAntiForgeryForm');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                    var data = { "word": $("#word").val(), "language": "tr-en", "format": "html", "__RequestVerificationToken": token };
+
+                        $.post("/Member/Translate", data, function (result) {
+
+                            var jsonData = jQuery.parseJSON(result);
+                            $("#translatedWord").val(jsonData.text);
+
+                        });
+                    count = 0;
+                    clearInterval(timerId);
+                }
+
+            }, 1000);
+
+        });
+
+
+
+
+
+
+    });
+
+</script>
+

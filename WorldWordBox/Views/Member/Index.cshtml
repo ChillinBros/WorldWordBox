@@ -31,18 +31,6 @@
     <div>
         meyaba @ViewData["mail"] abi
 
-        <form action="#">
-
-                <div class="form-group">
-                    <!-- has-error -->
-                    <input type="text" class="form-control" value="" placeholder="çevrilcek yazı" id="word" />
-                </div>
-
-            <p id="translatedWord"></p>
-        </form>
-
-
-
 
                 @using (Html.BeginForm("Logout", "Member", FormMethod.Post))
                 {
@@ -56,42 +44,7 @@
 
 
 <script>
-    $(function () {
-
-        var count = 0;
-        $("#word").keyup(function () {
-
-            //daha önceden tuş basılıp bitmediyse temizliyoruz
-            clearInterval(timerId);
-
-
-            var timerId = setInterval(function () {
-                count++;
-
-                if (count == 2)
-                {
-                    var form = $('#__AjaxAntiForgeryForm');
-                    var token = $('input[name="__RequestVerificationToken"]', form).val();
-
-                    var data = { "word": $("#word").val(), "language": "tr-en", "format": "html", "__RequestVerificationToken": token };
-
-                        $.post("/Member/Translate", data, function (result) {
-
-                            var jsonData = jQuery.parseJSON(result);
-                            $("#translatedWord").text(jsonData.text);
-
-                        });
-                    count = 0;
-                    clearInterval(timerId);
-                }
-
-            }, 1000);
-
-        });
-
-  
-
-        
+   
         
         
         //Not effective

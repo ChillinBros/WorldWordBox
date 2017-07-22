@@ -80,7 +80,7 @@ namespace WorldWordBox.Controllers
                 }
                     
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Json(LoginStatus.Fail, JsonRequestBehavior.DenyGet);
             }
