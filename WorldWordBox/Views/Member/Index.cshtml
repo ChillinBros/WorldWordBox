@@ -39,7 +39,6 @@
                 </div>
 
             <p id="translatedWord"></p>
-            <p id="count"></p>
         </form>
 
 
@@ -61,6 +60,8 @@
 
         var count = 0;
         $("#word").keyup(function () {
+
+            //daha önceden tuş basılıp bitmediyse temizliyoruz
             clearInterval(timerId);
 
 
@@ -69,35 +70,29 @@
 
                 if (count == 2)
                 {
-                var form = $('#__AjaxAntiForgeryForm');
-                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                    var form = $('#__AjaxAntiForgeryForm');
+                    var token = $('input[name="__RequestVerificationToken"]', form).val();
 
-                var data = { "word": $("#word").val(), "language": "tr-en", "format": "html", "__RequestVerificationToken": token };
+                    var data = { "word": $("#word").val(), "language": "tr-en", "format": "html", "__RequestVerificationToken": token };
 
-                $.post("/Member/Translate", data, function (result) {
+                        $.post("/Member/Translate", data, function (result) {
 
-                    var jsonData = jQuery.parseJSON(result);
+                            var jsonData = jQuery.parseJSON(result);
+                            $("#translatedWord").text(jsonData.text);
 
-                    $("#translatedWord").text(jsonData.text);
-
-                });
-                count = 0;
-                clearInterval(timerId);
+                        });
+                    count = 0;
+                    clearInterval(timerId);
                 }
 
             }, 1000);
-
 
         });
 
   
 
         
-        setInterval(function () {
-
-            $("#count").text(count);
-        }, 500);
-
+        
         
         //Not effective
         //$("#word").keyup(function () {
