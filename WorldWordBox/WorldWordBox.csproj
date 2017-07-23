@@ -221,6 +221,7 @@
     <Content Include="Content\images\bg.jpg" />
     <Content Include="Content\images\default_profile.jpg" />
     <Content Include="Content\images\delete-button.png" />
+    <Content Include="Content\images\delete.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\next_left.png" />
     <Content Include="Content\images\next_right.png" />
@@ -320,6 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\App_LocalResources\" />
     <Folder Include="fonts\glyphicons\" />
     <Folder Include="fonts\lato\" />
   </ItemGroup>
