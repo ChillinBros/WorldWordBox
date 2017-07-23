@@ -44,6 +44,16 @@ namespace WorldWordBox.Controllers
             return View();
         }
 
+        public ActionResult AddGroup()
+        {
+            if (!isLogged())
+                return RedirectToAction("Index", "Index");
+
+            ViewData["mail"] = Session["mail"];
+
+            return View();
+        }
+
 
         public ActionResult Logout()
         {

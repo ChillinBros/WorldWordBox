@@ -25,9 +25,10 @@ namespace WorldWordBox.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Groups> Groups { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<UserGroups> UserGroups { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserWords> UserWords { get; set; }
         public virtual DbSet<Words> Words { get; set; }
     }
