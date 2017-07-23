@@ -5,7 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e7e4fa6b94724909bfd1d88578980b50" Name="Diagram1">
-        <EntityTypeShape EntityType="wwbModel.Users" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="wwbModel.Users" Width="1.5" PointX="2.75" PointY="1" />
+        <EntityTypeShape EntityType="wwbModel.Groups" Width="1.5" PointX="8" PointY="2.125" />
+        <EntityTypeShape EntityType="wwbModel.UserGroups" Width="1.5" PointX="3.375" PointY="3.875" />
+        <EntityTypeShape EntityType="wwbModel.UserWords" Width="1.5" PointX="6" PointY="0.5" />
+        <EntityTypeShape EntityType="wwbModel.Words" Width="1.5" PointX="6" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -26,5 +26,9 @@ namespace WorldWordBox.Models
         }
     
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Groups> Groups { get; set; }
+        public virtual DbSet<UserGroups> UserGroups { get; set; }
+        public virtual DbSet<UserWords> UserWords { get; set; }
+        public virtual DbSet<Words> Words { get; set; }
     }
 }
