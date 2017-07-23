@@ -2,6 +2,10 @@
 <Schema Namespace="wwbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="wwbEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Users" EntityType="wwbModel.Users" />
+    <EntitySet Name="Groups" EntityType="wwbModel.Groups" />
+    <EntitySet Name="UserGroups" EntityType="wwbModel.UserGroups" />
+    <EntitySet Name="UserWords" EntityType="wwbModel.UserWords" />
+    <EntitySet Name="Words" EntityType="wwbModel.Words" />
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -14,5 +18,37 @@
     <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="birth_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserGroups">
+    <Key>
+      <PropertyRef Name="user_group_id" />
+    </Key>
+    <Property Name="user_group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserWords">
+    <Key>
+      <PropertyRef Name="user_word_id" />
+    </Key>
+    <Property Name="user_word_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="word_id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Words">
+    <Key>
+      <PropertyRef Name="word_id" />
+    </Key>
+    <Property Name="word_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="group_id" Type="Int32" Nullable="false" />
+    <Property Name="word_eng" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="word_tr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

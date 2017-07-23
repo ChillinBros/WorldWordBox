@@ -37,7 +37,7 @@
     <div class="intro-header">
         <div class="col-xs-12 text-center abcen1">
             <br>
-            <img src="~/Content/images/WWB.png" class="img-responsive center-block" width="175" height="auto" />
+            <center><img src="~/Content/images/WWB.png" class="img-responsive" alt="WWB Logo" width="175" height="175" /></center>
             <br>
             <div class="row">
                 <div class="col-md-3"></div>
@@ -46,81 +46,86 @@
 
                     <form action="/action_page.php">
                         <div class="login-form">
-                            <h4>Login</h4>
+                            <h4>Giriş</h4>
                             <div class="form-group">
                                 <!-- has-error -->
-                                <input type="text" class="form-control login-field" value="hs@gmail.com" placeholder="Enter your email" id="mail" required="required" />
+                                <input type="text" class="form-control login-field" value="hs@gmail.com" placeholder="E-posta adresi giriniz" id="mail" required="required" />
                                 <label class="login-field-icon fui-mail" for="mail"></label>
                             </div>
 
                             <div class="form-group">
-                                <input type="password" class="form-control login-field" value="123" placeholder="Password" id="password" />
+                                <input type="password" class="form-control login-field" value="123" placeholder="Şifre" id="password" />
                                 <label class="login-field-icon fui-lock" for="password"></label>
                             </div>
 
-                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#"><span id="loginText">Log in</span> <i id="loading" class=""></i></button>
+                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#"><span id="loginText">Giriş yap</span> <i id="loading" class=""></i></button>
+                            <div id="Warning" class="alert alert-danger fui-alert-circle hide"> E-postanız veya Şifreniz hatalı.</div>
                             <label class="checkbox" for="rememberMe">
                                 <input type="checkbox" value="" id="rememberMe" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                                Remember me
+                                Beni hatırla
                             </label>
 
                             <a class="btn btn-block btn-social btn-facebook">
                                 <span class="fa fa-facebook"></span>
-                                Log in with facebook
+                                Facebook ile giriş yap
                             </a>
 
                             <a class="btn btn-block btn-social btn-google">
                                 <span class="fa fa-google"></span>
-                                Log in with google
+                                Google ile giriş yap
                             </a>
-                            <a class="login-link" href="#">Lost your password?</a>
+                            <a class="login-link" href="#">Şifremi unuttum.</a>
 
                         </div>
                     </form>
 
 
                 </div>
+                <hr class="visible-sm visible-xs">
                 <div class="col-md-3">
 
                     <div class="login-form">
-                        <h4>Register</h4>
+                        <h4>Kayıt ol</h4>
 
                         <div class="form-group">
-                            <input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
+                            <input type="text" class="form-control login-field" value="" placeholder="Adınızı giriniz" id="login-name" />
                             <label class="login-field-icon fui-user" for="login-name"></label>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control login-field" value="" placeholder="Enter your surname" id="login-name" />
+                            <input type="text" class="form-control login-field" value="" placeholder="Soyadınızı giriniz" id="login-name" />
                             <label class="login-field-icon fui-user" for="login-name"></label>
                         </div>
                         <div class="form-group">
                             <!-- has-error -->
-                            <input type="text" class="form-control login-field" value="" placeholder="Enter your email" id="login-name" />
+                            <input type="text" class="form-control login-field" value="" placeholder="E-posta adresi giriniz" id="login-name" />
                             <label class="login-field-icon fui-mail" for="login-name"></label>
                         </div>
 
                         <div class="form-group">
-                            <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+                            <input type="password" class="form-control login-field" value="" placeholder="Şifre" id="login-pass" />
                             <label class="login-field-icon fui-lock" for="login-pass"></label>
                         </div>
 
                         <div class="form-group">
-                            <input type="password" class="form-control login-field" value="" placeholder="Re-password" id="login-pass" />
+                            <input type="password" class="form-control login-field" value="" placeholder="Tekrar şifre" id="login-pass" />
                             <label class="login-field-icon fui-lock" for="login-pass"></label>
                         </div>
 
                         <label class="checkbox" for="checkbox2">
                             <input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
-                            Terms and conditions
+                            Şartları ve koşulları kabul ediyorum.
                         </label>
 
-                        <a class="btn btn-info btn-lg btn-block" href="#">Register</a>
+                        <a class="btn btn-info btn-lg btn-block" href="#">Kayıt ol</a>
                        
                     </div>
                 </div>
                 <div class="col-md-3"></div>
             </div>
-
+            <hr>
+            <footer>
+                <p> &copy; Company 2017</p>
+            </footer>
         </div>
     </div>
 
@@ -163,11 +168,16 @@
                     if (result == 0) {
                         window.location.replace("@Url.Action("Index", "Member")");
                     } else if (result == 1) {
-                        alert("kullanıcı yok");
+                        $("#Warning").text(" Böyle bir kullanıcı bulunamadı.");
+                        $("#Warning").removeClass("hide");
                     } else if (result == 2) {
-                        alert("şifre yanlış");
+                        $("#Warning").text(" Eposta veya Şifre Hatalı");
+                        $("#Warning").removeClass("hide");
+                        
                     } else if (result == 3) {
-                        alert("bilinmeyen hata");
+                        $("#Warning").text(" Bilinmeyen bir hata oluştu.");
+                        $("#Warning").removeClass("hide");
+                       
                     }
 
 

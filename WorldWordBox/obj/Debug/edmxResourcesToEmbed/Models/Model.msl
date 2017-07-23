@@ -14,5 +14,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="wwbModel.Groups">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="group_name" ColumnName="group_name" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="wwbModel.UserGroups">
+        <MappingFragment StoreEntitySet="UserGroups">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="user_group_id" ColumnName="user_group_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserWords">
+      <EntityTypeMapping TypeName="wwbModel.UserWords">
+        <MappingFragment StoreEntitySet="UserWords">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="word_id" ColumnName="word_id" />
+          <ScalarProperty Name="user_word_id" ColumnName="user_word_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Words">
+      <EntityTypeMapping TypeName="wwbModel.Words">
+        <MappingFragment StoreEntitySet="Words">
+          <ScalarProperty Name="word_tr" ColumnName="word_tr" />
+          <ScalarProperty Name="word_eng" ColumnName="word_eng" />
+          <ScalarProperty Name="group_id" ColumnName="group_id" />
+          <ScalarProperty Name="word_id" ColumnName="word_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
