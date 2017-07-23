@@ -27,7 +27,7 @@ namespace WorldWordBox.Controllers
     {
 
 
-        wwbEntities entities = new wwbEntities();
+        wwbEntities entities;
 
 
         public bool isLogged()
@@ -55,27 +55,30 @@ namespace WorldWordBox.Controllers
         {
             try
             {
-                Users userControl = entities.Users
-                           .Where(u => u.mail == mail)
-                           .FirstOrDefault();
+                using (entities = new wwbEntities())
+                { 
+                    Users userControl = entities.Users
+                               .Where(u => u.mail == mail)
+                               .FirstOrDefault();
+                
 
-                if (userControl == null)
-                    return Json(LoginStatus.UserNotExist, JsonRequestBehavior.DenyGet);
+                    if (userControl == null)
+                        return Json(LoginStatus.UserNotExist, JsonRequestBehavior.DenyGet);
 
-                if (!Crypto.VerifyHashedPassword(userControl.password, password))
-                    return Json(LoginStatus.IncorrectPassword, JsonRequestBehavior.DenyGet);
-                else
-                {
-                    //creating token
-                    Session[Sys.userId] = userControl.user_id;
-                    Session[Sys.mail] = userControl.mail;
-                    Session[Sys.firstName] = userControl.first_name;
-                    Session[Sys.lastName] = userControl.last_name;
-                    Session[Sys.birthDate] = userControl.birth_date;
-                    Session[Sys.createDate] = userControl.create_date;
+                    if (!Crypto.VerifyHashedPassword(userControl.password, password))
+                        return Json(LoginStatus.IncorrectPassword, JsonRequestBehavior.DenyGet);
+                    else
+                    {
+                        //creating token
+                        Session[Sys.userId] = userControl.user_id;
+                        Session[Sys.mail] = userControl.mail;
+                        Session[Sys.firstName] = userControl.first_name;
+                        Session[Sys.lastName] = userControl.last_name;
+                        Session[Sys.birthDate] = userControl.birth_date;
+                        Session[Sys.createDate] = userControl.create_date;
 
-                    Session.Timeout = rememberMe ? 250000 : 720;
-
+                        Session.Timeout = rememberMe ? 250000 : 720;
+                    }
                     return Json(LoginStatus.Success, JsonRequestBehavior.DenyGet);
                 }
                     
@@ -93,26 +96,29 @@ namespace WorldWordBox.Controllers
         {
             try
             {
-                ////mail control
-                Users userControl = entities.Users
+                using (entities = new wwbEntities())
+                {
+                    ////mail control
+                    Users userControl = entities.Users
                             .Where(u => u.mail == mail)
                             .FirstOrDefault();
 
-            if(userControl != null)
-                return Json(RegisterStatus.MailExist, JsonRequestBehavior.AllowGet);
+                    if (userControl != null)
+                        return Json(RegisterStatus.MailExist, JsonRequestBehavior.AllowGet);
 
-            string hashPassword = Crypto.HashPassword(password);
-           
+                    string hashPassword = Crypto.HashPassword(password);
 
-            Users user = new Users();
-            user.password = hashPassword;
-            user.mail = mail;
-            user.create_date = DateTime.Now;
 
-            entities.Users.Add(user);
+                    Users user = new Users();
+                    user.password = hashPassword;
+                    user.mail = mail;
+                    user.create_date = DateTime.Now;
 
-           
-                entities.SaveChanges();
+                    entities.Users.Add(user);
+
+
+                    entities.SaveChanges();
+                }
             }
             catch (Exception)
             {
