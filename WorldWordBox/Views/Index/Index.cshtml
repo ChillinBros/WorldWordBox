@@ -1,0 +1,214 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link href="~/Content/flat-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/stil.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-social.css" rel="stylesheet" />
+
+</head>
+    @using WorldWordBox.Models
+    @{
+        ViewBag.Title = "Index";
+      
+
+
+    }
+
+
+
+
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+<body class="c1">
+
+
+    <!-- FullScreen -->
+    <div class="intro-header">
+        <div class="col-xs-12 text-center abcen1">
+            <br>
+            <center><img src="~/Content/images/WWB.png" class="img-responsive" alt="WWB Logo" width="175" height="175" /></center>
+            <br>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+
+
+                    <form action="/action_page.php">
+                        <div class="login-form">
+                            <h4>Giriş</h4>
+                            <div class="form-group">
+                                <!-- has-error -->
+                                <input type="text" class="form-control login-field" value="hs@gmail.com" placeholder="E-posta adresi giriniz" id="mail" required="required" />
+                                <label class="login-field-icon fui-mail" for="mail"></label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control login-field" value="123" placeholder="Şifre" id="password" />
+                                <label class="login-field-icon fui-lock" for="password"></label>
+                            </div>
+
+                            <button type="button" id="login" class="btn btn-info btn-lg btn-block" href="#"><span id="loginText">Giriş yap</span> <i id="loading" class=""></i></button>
+                            <div id="Warning" class="alert alert-danger fui-alert-circle hide"> E-postanız veya Şifreniz hatalı.</div>
+                            <label class="checkbox" for="rememberMe">
+                                <input type="checkbox" value="" id="rememberMe" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                                Beni hatırla
+                            </label>
+
+                            <a class="btn btn-block btn-social btn-facebook">
+                                <span class="fa fa-facebook"></span>
+                                Facebook ile giriş yap
+                            </a>
+
+                            <a class="btn btn-block btn-social btn-google">
+                                <span class="fa fa-google"></span>
+                                Google ile giriş yap
+                            </a>
+                            <a class="login-link" href="#">Şifremi unuttum.</a>
+
+                        </div>
+                    </form>
+
+
+                </div>
+                <hr class="visible-sm visible-xs">
+                <div class="col-md-3">
+
+                    <div class="login-form">
+                        <h4>Kayıt ol</h4>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control login-field" value="" placeholder="Adınızı giriniz" id="login-name" />
+                            <label class="login-field-icon fui-user" for="login-name"></label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control login-field" value="" placeholder="Soyadınızı giriniz" id="login-name" />
+                            <label class="login-field-icon fui-user" for="login-name"></label>
+                        </div>
+                        <div class="form-group">
+                            <!-- has-error -->
+                            <input type="text" class="form-control login-field" value="" placeholder="E-posta adresi giriniz" id="login-name" />
+                            <label class="login-field-icon fui-mail" for="login-name"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control login-field" value="" placeholder="Şifre" id="login-pass" />
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control login-field" value="" placeholder="Tekrar şifre" id="login-pass" />
+                            <label class="login-field-icon fui-lock" for="login-pass"></label>
+                        </div>
+
+                        <label class="checkbox" for="checkbox2">
+                            <input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" class="custom-checkbox"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                            Şartları ve koşulları kabul ediyorum.
+                        </label>
+
+                        <a class="btn btn-info btn-lg btn-block" href="#" id="register">Kayıt ol</a>
+                       
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <hr>
+            <footer>
+                <p> &copy; Company 2017</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script>
+        $(function () {
+            //LOGIN
+            $("#login").click(function () {
+                $("#login").addClass("disabled")
+                $("#loading").addClass("fa fa-refresh fa-spin fa-1x fa-fw");
+                $("#loginText").text("");
+
+                var mail = $("#mail").val();
+                var password = $("#password").val();
+
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                //remember
+                if ($("#rememberMe").is(':checked'))
+                    var remember = true;
+                else
+                    var remember = false;
+
+                data = { "mail": mail, "password": password,"rememberMe":remember, "__RequestVerificationToken": token };
+
+                $.post("/Index/Login", data, function (result) {
+                    if (result == 0) {
+                        window.location.replace("@Url.Action("Index", "Member")");
+                    } else if (result == 1) {
+                        $("#Warning").text(" Böyle bir kullanıcı bulunamadı.");
+                        $("#Warning").removeClass("hide");
+                    } else if (result == 2) {
+                        $("#Warning").text(" Eposta veya Şifre Hatalı");
+                        $("#Warning").removeClass("hide");
+                        
+                    } else if (result == 3) {
+                        $("#Warning").text(" Bilinmeyen bir hata oluştu.");
+                        $("#Warning").removeClass("hide");
+                       
+                    }
+
+
+                    $("#login").removeClass("disabled").text("Login");
+                    $("#loginText").text("Logşn");
+                    $("#loading").removeClass("fa fa-refresh fa-spin fa-3x fa-fw");
+                });
+            });
+
+            //REGISTER
+            $("#register").click(function () {
+                var mail = "hssss@gmail.com";
+                var password = "123";
+
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+                var data = { "mail": mail, "password": password, "__RequestVerificationToken": token };
+                $.post("/Index/Register", data, function (result) {
+
+                    if (result == 0) {
+                        alert("tamam");
+                    } else if (result == 1) {
+                        alert("fail");
+                    } else if (result == 2) {
+                        alert("mail var");
+                    }
+
+                });
+            });
+
+
+
+
+        });
+
+    </script>
