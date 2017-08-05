@@ -5,6 +5,7 @@ using WorldWordBox.Models;
 using System.Linq;
 using System.Net;
 using System.IO;
+using System.Collections.Generic;
 
 namespace WorldWordBox.Controllers
 {
@@ -33,7 +34,7 @@ namespace WorldWordBox.Controllers
         // GET: Member
         public ActionResult Index()
         {
-            if(!isLogged())
+            if (!isLogged())
                 return RedirectToAction("Index", "Index");
 
             ViewData["mail"] = Session["mail"];
@@ -59,6 +60,36 @@ namespace WorldWordBox.Controllers
 
             ViewData["mail"] = Session["mail"];
 
+            List<Group> userGroupList = new List<Group>();
+            List<UserGroups> userGroups = null;
+            List<Groups> groups = null;
+            Groups group = null;
+            int userId = Convert.ToInt32(Session[Sys.userId]);
+
+
+            using (entities = new wwbEntities())
+            {
+                userGroups = entities.UserGroups
+                                    .Where(g => (g.user_id == userId))
+                                    .ToList();
+
+                string s = "";
+                if (userGroups != null)
+                {
+                    foreach (UserGroups ug in userGroups)
+                    {
+                        group = entities.Groups
+                                    .Where(g => g.group_id == ug.group_id)
+                                    .FirstOrDefault();
+
+                        userGroupList.Add(new Group(group.group_id, group.group_name));
+                        s += group.group_name + " ";
+                    }
+                    ViewData[Sys.userGroups] = userGroupList;
+                }
+
+            }
+
             return View();
         }
 
@@ -81,7 +112,7 @@ namespace WorldWordBox.Controllers
         {
             Groups group;
             UserGroups userGroup;
-            int userId = Convert.ToInt32(Session[Sys.userId]); 
+            int userId = Convert.ToInt32(Session[Sys.userId]);
             try
             {
                 using (entities = new wwbEntities())
@@ -119,15 +150,15 @@ namespace WorldWordBox.Controllers
                     entities.UserGroups.Add(userGroup);
                     entities.SaveChanges();
                 }
-               
+
             }
             catch (Exception e)
             {
                 return Json(GroupAddingStatus.Fail, JsonRequestBehavior.AllowGet);
             }
-            
 
-                return Json(GroupAddingStatus.Success, JsonRequestBehavior.AllowGet);
+
+            return Json(GroupAddingStatus.Success, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -145,12 +176,12 @@ namespace WorldWordBox.Controllers
             Stream stream = response.GetResponseStream();
             StreamReader reader = new StreamReader(stream);
 
-            String line="",responseJson  = "";
+            String line = "", responseJson = "";
 
             while ((line = reader.ReadLine()) != null)
                 responseJson += line;
 
-      
+
 
             return Json(responseJson, JsonRequestBehavior.AllowGet);
         }

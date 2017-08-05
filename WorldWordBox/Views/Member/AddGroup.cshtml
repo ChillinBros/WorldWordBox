@@ -1,4 +1,4 @@
-﻿
+﻿@model List<WorldWordBox.Models.Group>
 @{
     ViewBag.Title = "AddGroup";
     Layout = "~/Views/Shared/member_Layout.cshtml";
@@ -9,11 +9,14 @@
     @Html.AntiForgeryToken()
 }
 
+@{
+    IEnumerable<WorldWordBox.Models.Group> groups = ViewData["userGroups"] as IEnumerable<WorldWordBox.Models.Group>;
+}
 <h1>Grup Ekle</h1>
 <br>
 
 <div class="row">
-
+    @ViewData["g"]
     <div class="col-md-3">
         <input id="txtGroupName" type="text" class="form-control login-field" value="" placeholder="Grup Adı giriniz" required />
     </div>
@@ -21,43 +24,42 @@
     <div class="col-md-6"></div>
 </div>
 <br>
-<div class="alert hide fui-alert-circle" id="groupWarning">
-    <p class=" "> Tebrikler Grup Oluşturuldu.</p>
+<div class="alert alert-success">
+    <p class=" fui-alert-circle"> Tebrikler Grup Oluşturuldu.</p>
+</div>
+<div class="alert alert-danger">
+    <p class=" fui-alert-circle"> Üzgünüm Grup Oluşturulurken bir hata oluştu.</p>
 </div>
 
 <br>
 <div class="row">
     <h3>Aktif Gruplar</h3>
     <br>
-    <div class="col-md-3">
 
-        <div class="list-group">
-            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete.png" width="25" height="auto" class="pull-right" /></a>  </span>
-            <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Fare <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Domuz <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item"><a href=""> <img src="~/Content/images/next_left.png" width="25" height="auto" class="pull-left" /></a><a href=""> <img src="~/Content/images/next_right.png" width="25" height="auto" class="pull-right" /></a><br></span>
 
+
+    @foreach (var g in groups)
+            {
+        <div class="col-md-3">
+            <div class="list-group">
+                <span class="list-group-item active"> @g.Name <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a>  </span>
+                <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+                <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+                <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+                <span class="list-group-item">Fare <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+                <span class="list-group-item">Domuz <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+                <span class="list-group-item"><a href=""> <img src="~/Content/images/next_left.png" width="25" height="auto" class="pull-left" /></a><a href=""> <img src="~/Content/images/next_right.png" width="25" height="auto" class="pull-right" /></a><br></span>
+
+            </div>
         </div>
+    }
 
-    </div>
+
+
+
     <div class="col-md-3">
         <div class="list-group">
-            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete.png" width="25" height="auto" class="pull-right" /></a>  </span>
-            <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Fare <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item">Domuz <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
-            <span class="list-group-item"><a href=""> <img src="~/Content/images/next_left.png" width="25" height="auto" class="pull-left" /></a><a href=""> <img src="~/Content/images/next_right.png" width="25" height="auto" class="pull-right" /></a><br></span>
-
-
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="list-group"><span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete.png" width="25" height="auto" class="pull-right" /></a>  </span>
+            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a>  </span>
             <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
             <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
             <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
@@ -70,7 +72,20 @@
     </div>
     <div class="col-md-3">
         <div class="list-group">
-            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete.png" width="25" height="auto" class="pull-right" /></a>  </span>
+            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a>  </span>
+            <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+            <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+            <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+            <span class="list-group-item">Fare <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+            <span class="list-group-item">Domuz <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
+            <span class="list-group-item"><a href=""> <img src="~/Content/images/next_left.png" width="25" height="auto" class="pull-left" /></a><a href=""> <img src="~/Content/images/next_right.png" width="25" height="auto" class="pull-right" /></a><br></span>
+
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="list-group">
+            <span class="list-group-item active">Hayvanlar <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a>  </span>
             <span class="list-group-item">Kedi <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
             <span class="list-group-item">Köpek <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
             <span class="list-group-item">Aslan <a href=""> <img src="~/Content/images/delete-button.png" width="25" height="auto" class="pull-right" /></a></span>
@@ -85,38 +100,32 @@
 
 
 <script>
-    $(function () {
+        $(function () {
 
-        $("#btnAddGroup").click(function () {
-            var form = $('#__AjaxAntiForgeryForm');
-            var token = $('input[name="__RequestVerificationToken"]', form).val();
+            $("#btnAddGroup").click(function () {
+                var form = $('#__AjaxAntiForgeryForm');
+                var token = $('input[name="__RequestVerificationToken"]', form).val();
 
-            var groupName = $("#txtGroupName").val();
+                var groupName = $("#txtGroupName").val();
 
 
 
-            if (groupName.length == 0)
-                return;
-           
-            var data = { "groupName": groupName, "__RequestVerificationToken": token };
+                if (groupName.length == 0)
+                    return;
 
-            $.post("/Member/AddGroup", data, function (result) {
-                if (result == 0) {
-                    $("#groupWarning").removeClass("hide");
-                    $("#groupWarning").addClass("alert-success");
-                    $("#groupWarning").removeClass("alert-danger");
-                    $("#groupWarning").text(" Grup başarıyla eklendi");
-                } else if (result == 1) {
-                    alert("Bilinmeyen hata");
-                } else if (result == 2) {
-                    $("#groupWarning").removeClass("hide");
-                    $("#groupWarning").removeClass("alert-success");
-                    $("#groupWarning").addClass("alert-danger");
-                    $("#groupWarning").text(" Bu grup daha önce eklenmiş.");
-                }
+                var data = { "groupName": groupName, "__RequestVerificationToken": token };
+
+                $.post("/Member/AddGroup", data, function (result) {
+                    if (result == 0) {
+                        alert("eklendi");
+                    } else if (result == 1) {
+                        alert("Bilinmeyen hata");
+                    } else if (result == 2) {
+                        alert("Bu grubu zaten eklemişsiniz");
+                    }
+                });
             });
         });
-    });
 </script>
 
 
