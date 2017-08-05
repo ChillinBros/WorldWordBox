@@ -1,4 +1,4 @@
-﻿
+﻿@model List<WorldWordBox.Models.Group>
 @{
     ViewBag.Title = "AddWord";
     Layout = "~/Views/Shared/member_Layout.cshtml";
@@ -12,6 +12,9 @@
     @Html.AntiForgeryToken()
 }
 
+@{
+    IEnumerable<WorldWordBox.Models.Group> groups = ViewData["userGroups"] as IEnumerable<WorldWordBox.Models.Group>;
+}
 
         meyaba @ViewData["mail"] abi
 
@@ -23,26 +26,33 @@
     
     <form action="#">
 
+
+ 
+
         <div class="col-md-2">
-            <input type="text" class="form-control login-field" value="" id="word" placeholder="Kelimeyi Gir" required />
+            <input type="word" class="form-control login-field" value="" id="word" placeholder="Kelimeyi Gir" required />
         </div>
         <div class="col-md-1"><img src="~/Content/images/shuffle.png" width="40" height="auto"></div>
         <div class="col-md-2">
-            <input type="text" id="translatedWord" class="form-control login-field" value="" placeholder="" required />
+            <input type="text" id="wordTr" class="form-control login-field" value="" placeholder="" required />
         </div>
         <div class="col-md-4">
             <select class="form-control select select-primary" data-toggle="select">
-                <option value="0">Grup Seç</option>
-                <option value="1">Ofis Eşyaları</option>
-                <option value="2">Hayvanlar</option>
-                <option value="3">Meyveler</option>
-                <option value="4">Karışık</option>
-                <option value="5">Yeni öğrendiklerim</option>
+               
+                    <div class="col-md-3">
+                        <div class="list-group">
+                            @foreach (var g in groups)
+                            {
+                                <option class="option" value="@g.Id">@g.Name</option>
+                            }
+                        </div>
+                    </div>
+               
             </select>
         </div>
 
         <div class="col-md-2">
-            <a class="btn btn-block btn-primary btn-lg" id="addWord">Ekle</a>
+            <a id="addWord" class="btn btn-block btn-primary btn-lg" id="addWord">Ekle</a>
         </div>
     </form>
 
@@ -69,7 +79,6 @@
 
         var count = 0;
         $("#word").keyup(function () {
-
             //daha önceden tuş basılıp bitmediyse temizliyoruz
             clearInterval(timerId);
 
@@ -87,7 +96,7 @@
                         $.post("/Member/Translate", data, function (result) {
 
                             var jsonData = jQuery.parseJSON(result);
-                            $("#translatedWord").val(jsonData.text);
+                            $("#wordTr").val(jsonData.text);
 
                         });
                     count = 0;
@@ -101,6 +110,37 @@
 
 
 
+
+
+
+
+        $("#addWord").click(function () {
+            var form = $('#__AjaxAntiForgeryForm');
+            var token = $('input[name="__RequestVerificationToken"]', form).val();
+
+            var groupId = 30; //TODO: get selected group
+            var word = $('#word').val();
+            var wordTr = $('#wordTr').val();
+            
+            var data = { "groupId": groupId, "word": word, "wordTr": wordTr, "__RequestVerificationToken": token };
+
+            $.post("/Member/AddWord", data, function (result) {
+                if (result == 0) {
+                    alert("eklendi");
+                } else if (result == 1) {
+                    alert("Bilinmeyen hata");
+                } else if (result == 2) {
+                    alert("Bu kelimeyi zaten eklemişsiniz");
+                }
+            });
+        });
+
+
+        $('.list-group option').click(function () {
+
+            alert("aa");
+        });
+        
 
 
     });

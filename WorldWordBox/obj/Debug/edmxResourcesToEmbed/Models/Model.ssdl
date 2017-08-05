@@ -51,8 +51,8 @@
     </Key>
     <Property Name="word_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="group_id" Type="int" Nullable="false" />
-    <Property Name="word_eng" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="word_tr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="word" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="word_translate" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityContainer Name="wwbModelStoreContainer">
     <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />

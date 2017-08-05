@@ -56,8 +56,8 @@
           </Key>
           <Property Name="word_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="group_id" Type="int" Nullable="false" />
-          <Property Name="word_eng" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="word_tr" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="word" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="word_translate" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="wwbModelStoreContainer">
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
@@ -130,8 +130,8 @@
           </Key>
           <Property Name="word_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="group_id" Type="Int32" Nullable="false" />
-          <Property Name="word_eng" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="word_tr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="word" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="word_translate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -192,8 +192,8 @@
           <EntitySetMapping Name="Words">
             <EntityTypeMapping TypeName="wwbModel.Words">
               <MappingFragment StoreEntitySet="Words">
-                <ScalarProperty Name="word_tr" ColumnName="word_tr" />
-                <ScalarProperty Name="word_eng" ColumnName="word_eng" />
+                <ScalarProperty Name="word_translate" ColumnName="word_translate" />
+                <ScalarProperty Name="word" ColumnName="word" />
                 <ScalarProperty Name="group_id" ColumnName="group_id" />
                 <ScalarProperty Name="word_id" ColumnName="word_id" />
               </MappingFragment>

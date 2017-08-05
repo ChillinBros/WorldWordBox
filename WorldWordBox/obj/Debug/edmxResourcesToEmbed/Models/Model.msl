@@ -54,8 +54,8 @@
     <EntitySetMapping Name="Words">
       <EntityTypeMapping TypeName="wwbModel.Words">
         <MappingFragment StoreEntitySet="Words">
-          <ScalarProperty Name="word_tr" ColumnName="word_tr" />
-          <ScalarProperty Name="word_eng" ColumnName="word_eng" />
+          <ScalarProperty Name="word_translate" ColumnName="word_translate" />
+          <ScalarProperty Name="word" ColumnName="word" />
           <ScalarProperty Name="group_id" ColumnName="group_id" />
           <ScalarProperty Name="word_id" ColumnName="word_id" />
         </MappingFragment>

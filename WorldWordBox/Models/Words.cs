@@ -16,7 +16,7 @@ namespace WorldWordBox.Models
     {
         public int word_id { get; set; }
         public int group_id { get; set; }
-        public string word_eng { get; set; }
-        public string word_tr { get; set; }
+        public string word { get; set; }
+        public string word_translate { get; set; }
     }
 }
